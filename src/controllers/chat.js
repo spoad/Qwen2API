@@ -257,12 +257,15 @@ const handleStreamResponse = async (res, response, enable_thinking, enable_web_s
                 }
             }
 
-            if (!delta || !delta.content ||
+            if (!delta ||
                 (delta.phase !== 'think' && delta.phase !== 'answer')) {
                 return
             }
 
-            let content = delta.content
+            let content = delta.content || delta.thought || ''
+            if (!content) {
+                return
+            }
             completionContent += content
 
             if (delta.phase === 'think' && !thinking_start) {
@@ -532,12 +535,15 @@ const handleNonStreamResponse = async (res, response, enable_thinking, enable_we
                             }
                         }
 
-                        if (!delta || !delta.content ||
+                        if (!delta ||
                             (delta.phase !== 'think' && delta.phase !== 'answer')) {
                             continue
                         }
 
-                        let content = delta.content
+                        let content = delta.content || delta.thought || ''
+                        if (!content) {
+                            continue
+                        }
 
                         if (delta.phase === 'think' && !thinking_start) {
                             thinking_start = true
