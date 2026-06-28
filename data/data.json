@@ -1,0 +1,24 @@
+{
+  "defaultHeaders": null,
+  "defaultCookie": null,
+  "accounts": [
+    {
+      "email": "3293779643@qq.com",
+      "password": "hjysgdsb438",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2JjMjI1LTExM2YtNGQ3My04NDVlLWQ5Mzk1MzM5NzllYSIsImxhc3RfcGFzc3dvcmRfY2hhbmdlIjoxNzUwNjYwODczLCJleHAiOjE3ODUxODUyOTJ9.Xe5hjsm0Nrt2hhuXebSOleFgUv77-4SaKINwuU7PZ9c",
+      "expires": 1785185292,
+      "proxy": null,
+      "stats": {
+        "chat": {
+          "input": 776,
+          "output": 9513
+        },
+        "cli": {
+          "calls": 0,
+          "input": 0,
+          "output": 0
+        }
+      }
+    }
+  ]
+}

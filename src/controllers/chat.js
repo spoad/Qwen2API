@@ -257,8 +257,15 @@ const handleStreamResponse = async (res, response, enable_thinking, enable_web_s
                 }
             }
 
-            if (!delta ||
-                (delta.phase !== 'think' && delta.phase !== 'answer')) {
+            if (!delta) {
+                return
+            }
+
+            // 兼容不同模型的返回格式：支持 phase 字段或直接的 content 内容
+            const hasValidPhase = delta.phase === 'think' || delta.phase === 'answer';
+            const hasContent = delta.content || delta.thought;
+            
+            if (!hasValidPhase && !hasContent) {
                 return
             }
 
@@ -268,7 +275,8 @@ const handleStreamResponse = async (res, response, enable_thinking, enable_web_s
             }
             completionContent += content
 
-            if (delta.phase === 'think' && !thinking_start) {
+            // 处理思考开始标记：当 phase 为 'think' 或者没有 phase 但首次收到内容时
+            if ((delta.phase === 'think' || (!hasValidPhase && !thinking_start)) && !thinking_start) {
                 thinking_start = true
                 if (web_search_info) {
                     content = `<think>\n\n${await accountManager.generateMarkdownTable(web_search_info, config.searchInfoMode)}\n\n${content}`
@@ -276,7 +284,8 @@ const handleStreamResponse = async (res, response, enable_thinking, enable_web_s
                     content = `<think>\n\n${content}`
                 }
             }
-            if (delta.phase === 'answer' && !thinking_end && thinking_start) {
+            // 处理思考结束标记：当 phase 为 'answer' 或者没有 phase 但已收到过思考内容时
+            if ((delta.phase === 'answer' || (!hasValidPhase && thinking_start)) && !thinking_end && thinking_start) {
                 thinking_end = true
                 if (pendingImageMarkdownList.length > 0) {
                     const pendingImageContent = `${pendingImageMarkdownList.join('\n\n')}\n\n`
@@ -289,7 +298,7 @@ const handleStreamResponse = async (res, response, enable_thinking, enable_web_s
                 }
             }
 
-            if (toolParser && delta.phase === 'answer') {
+            if (toolParser && (delta.phase === 'answer' || !hasValidPhase)) {
                 const parsed = toolParser.push(content)
                 if (parsed.textDelta) writeContentDelta(parsed.textDelta)
                 if (parsed.completedCalls.length > 0) writeToolCallsDelta(parsed.completedCalls)
@@ -535,8 +544,15 @@ const handleNonStreamResponse = async (res, response, enable_thinking, enable_we
                             }
                         }
 
-                        if (!delta ||
-                            (delta.phase !== 'think' && delta.phase !== 'answer')) {
+                        if (!delta) {
+                            continue
+                        }
+
+                        // 兼容不同模型的返回格式：支持 phase 字段或直接的 content 内容
+                        const hasValidPhase = delta.phase === 'think' || delta.phase === 'answer';
+                        const hasContent = delta.content || delta.thought;
+                        
+                        if (!hasValidPhase && !hasContent) {
                             continue
                         }
 
@@ -545,7 +561,8 @@ const handleNonStreamResponse = async (res, response, enable_thinking, enable_we
                             continue
                         }
 
-                        if (delta.phase === 'think' && !thinking_start) {
+                        // 处理思考开始标记：当 phase 为 'think' 或者没有 phase 但首次收到内容时
+                        if ((delta.phase === 'think' || (!hasValidPhase && !thinking_start)) && !thinking_start) {
                             thinking_start = true
                             if (web_search_info) {
                                 const webSearchTable = await accountManager.generateMarkdownTable(web_search_info, config.searchInfoMode)
@@ -554,7 +571,8 @@ const handleNonStreamResponse = async (res, response, enable_thinking, enable_we
                                 content = `<think>\n\n${content}`
                             }
                         }
-                        if (delta.phase === 'answer' && !thinking_end && thinking_start) {
+                        // 处理思考结束标记：当 phase 为 'answer' 或者没有 phase 但已收到过思考内容时
+                        if ((delta.phase === 'answer' || (!hasValidPhase && thinking_start)) && !thinking_end && thinking_start) {
                             thinking_end = true
                             if (pendingImageMarkdownList.length > 0) {
                                 content = `\n\n</think>\n${pendingImageMarkdownList.join('\n\n')}\n\n${content}`
