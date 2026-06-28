@@ -1,0 +1,65 @@
+
+> qwen2api@2026.06.16.23.10 start
+> node src/start.js
+
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 🚀 Qwen2API 智能启动
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 CPU核心数: 2
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 配置的进程数: 1
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 实际启动进程数: 1
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 服务端口: 3000
+[2m2026-06-27 21:14:17[0m [32m[INFO][0m [1m[AUTO][0m 📝 📦 使用单进程模式启动
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[SSXMOD][0m 📝 SSXMOD Cookie 已刷新
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[SSXMOD][0m 📝 SSXMOD 管理器已启动，刷新间隔: 15 分钟
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[ACCOUNT][0m 📝 后台初始化所有 1 个账户的 CLI
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[CLI][0m 📝 设置每日 00:00 重置定时器（CLI 请求次数 + daily stats）
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[CLI][0m 📝 距离下次重置还有 166 分钟
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[ACCOUNT][0m ✅ 成功加载 1 个账户
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[ACCOUNT][0m ✅ 账户管理器初始化完成，共加载 1 个账户
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[SERVER][0m 🚀 服务器启动成功
+{
+  address: 'localhost',
+  port: 3000,
+  outThink: '关闭',
+  searchInfoMode: '文本',
+  dataSaveMode: 'file',
+  logLevel: 'INFO',
+  enableFileLog: false
+}
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[INFO][0m 📝 开源地址: https://github.com/Rfym21/Qwen2API
+[2m2026-06-27 21:14:18[0m [32m[INFO][0m [1m[INFO][0m 📝 电报群聊: https://t.me/nodejs_project
+[2m2026-06-27 21:14:23[0m [33m[WARN][0m [1m[CLI][0m ⚠️ CLI轮询令牌未完成 (1/3)
+{
+  status: 504,
+  statusText: 'Gateway Time-out',
+  body: '<html>\r\n' +
+    '<head><title>504 Gateway Time-out</title></head>\r\n' +
+    '<body bgcolor="white">\r\n' +
+    '<center><h1>504 Gateway Time-out</h1></center>\r\n' +
+    '<hr><center>alibaba-ga</center>\r\n' +
+    '</body>\r\n' +
+    '</html>\r\n'
+}
+[2m2026-06-27 21:14:33[0m [33m[WARN][0m [1m[CLI][0m ⚠️ CLI轮询令牌未完成 (2/3)
+{
+  status: 504,
+  statusText: 'Gateway Time-out',
+  body: '<html>\r\n' +
+    '<head><title>504 Gateway Time-out</title></head>\r\n' +
+    '<body bgcolor="white">\r\n' +
+    '<center><h1>504 Gateway Time-out</h1></center>\r\n' +
+    '<hr><center>alibaba-ga</center>\r\n' +
+    '</body>\r\n' +
+    '</html>\r\n'
+}
+[2m2026-06-27 21:14:43[0m [33m[WARN][0m [1m[CLI][0m ⚠️ CLI轮询令牌未完成 (3/3)
+{
+  status: 504,
+  statusText: 'Gateway Time-out',
+  body: '<html>\r\n' +
+    '<head><title>504 Gateway Time-out</title></head>\r\n' +
+    '<body bgcolor="white">\r\n' +
+    '<center><h1>504 Gateway Time-out</h1></center>\r\n' +
+    '<hr><center>alibaba-ga</center>\r\n' +
+    '</body>\r\n' +
+    '</html>\r\n'
+}
